@@ -30,7 +30,7 @@ Antes executar o projeto:
 	- Dentro da pasta %JBOSS_HOME%\modules\com\mysql\main deve existir dois arquivos mysql-connector-java-X.X.XX.jar e module.xml 
 	- Caso não exista o arquivo mysql-connector-java-X.X.XX.jar efetue o download do mesmo conforme link a seguir (Versão 5.1.29): http://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/5.1.29/mysql-connector-java-5.1.29.bundle.jar
 	- Caso não exista o arquivo module.xml efetue a criação de um arquivo xml chamado module.xml e adicione o conteudo conforme abaixo:
-	<pre><code class="xml">
+	```xml
 	<?xml version="1.0" encoding="UTF-8"?>
 
 	<module xmlns="urn:jboss:module:1.0" name="com.mysql">
@@ -41,16 +41,16 @@ Antes executar o projeto:
     		<module name="javax.api"/>
   		</dependencies>
 	</module>
-	</code></pre>
+	
 - Verifique se o standalone.xml esta com o driver do mysql configurado
 	- Acesse o diretório: %JBOSS_HOME%\standalone\configuration
 	- Abra o arquivo standalone.xml e localize a tag <drivers>... </drivers>
 	- Dentro desta tag deve existir a declaração do driver do mysql conforme abaixo, caso não exista adicione esta informação.
-	<pre><code class="xml">
+	```xml
 	<driver name="mysql" module="com.mysql">
 		<xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
 	</driver>
-	</code></pre>
+	
 
 Acesso para a aplicação
 ---------------------
