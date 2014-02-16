@@ -44,7 +44,7 @@ Antes executar o projeto:
 	
 - Verifique se o standalone.xml esta com o driver do mysql configurado
 	- Acesse o diretório: %JBOSS_HOME%\standalone\configuration
-	- Abra o arquivo standalone.xml e localize a tag <drivers>... </drivers>
+	- Abra o arquivo standalone.xml e localize a tag drivers
 	- Dentro desta tag deve existir a declaração do driver do mysql conforme abaixo, caso não exista adicione esta informação.
 	```xml
 	<driver name="mysql" module="com.mysql">
