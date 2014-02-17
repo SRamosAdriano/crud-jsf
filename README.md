@@ -1,7 +1,7 @@
 Projeto: crud-jsf
 ========================
 Author: Adriano Santos Ramos <br>
-Tecnologias: CDI, JSF, JPA, EJB, JPA, JAX-RS, BV <br>
+Tecnologias: CDI, JSF, JPA, EJB, JPA <br>
 Sumário: Exemplo de um crud em jsf <br>
 Source: http://goo.gl/jwnyKu
 
