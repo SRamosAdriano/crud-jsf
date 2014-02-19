@@ -1,13 +1,16 @@
 package br.com.sramos.crudjsf.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -42,6 +45,9 @@ public class Autor implements Serializable {
 	@NotEmpty
 	@Email
 	private String email;
+	
+	@ManyToMany (mappedBy ="autores", fetch=FetchType.LAZY)
+	Collection<Livro> livros;
 
 	public Autor(){}
 	
