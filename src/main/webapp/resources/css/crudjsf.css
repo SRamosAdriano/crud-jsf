@@ -1,0 +1,39 @@
+body{
+	background-image: url(#{resource['imagens:fundo.jpg']});
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+td, th{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+img {
+	border:0px;
+}
+
+#divGeralTemplate{
+/*	border: 1px solid; */
+	width: 1007px;
+	margin:0 auto;
+	text-align:left;
+}
+
+#divCentroTemplate{
+/*	border: 1px solid; */
+	width: 1000px;
+	float: left;
+}
+
+#corpo{
+/*	border: 1px solid; */
+	background-color:#FFFFFF;
+	width: 1000px;
+}
+
+#rodape{
+/*	border: 1px solid; */
+	background-color:#FFFFFF;
+	width: 1000px;
+}
