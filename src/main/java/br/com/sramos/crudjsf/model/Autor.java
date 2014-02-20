@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -21,7 +20,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "autor", uniqueConstraints = { @UniqueConstraint(name = "UC_AUTOR_NOME", columnNames = "nome") })
+@Table(name = "autor")
 public class Autor implements Serializable {
 
 	private static final long serialVersionUID = -5112232235250760146L;

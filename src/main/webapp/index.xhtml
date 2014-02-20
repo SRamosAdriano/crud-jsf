@@ -14,14 +14,52 @@
             <h:form id="livro">
             	<h:panelGrid columns="2">
 	            	<h:outputText value="Nome Livro: " />
-	            	<h:inputText value="#{livroBean.livro.nome}" />
-	            	<h:outputText value="ISBN Livro: " />
-	            	<h:inputText value="#{livroBean.livro.isbn}" />
+	            	<h:inputText id="nomeLivro" value="#{livroBean.livro.nome}" />
 	            	
-	            	<p:commandButton value="Salvar" action="#{livroBean.salvar()}" ajax="false" />
+	            	<h:outputText value="ISBN Livro: " />
+	            	<h:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" />
+	            	
+	            	<p:commandButton id="salvarLivro" value="Salvar" action="#{livroBean.salvar()}" update=":livro :listaLivros" />
 	            </h:panelGrid>
             </h:form>
-        
+            
+            <br/>
+        	<h:form id="listaLivros">
+        		<p:dataTable id="listaLivros" var="livro" value="#{livroBean.livros}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Livros Não Localizados" 
+        				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">  
+			        <f:facet name="header">  
+			            <h:outputText value="Lista de Livros" />  
+			        </f:facet>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="Nome" />  
+			            </f:facet>  
+			            <h:outputText value="#{livro.nome}" />  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="ISBN" />  
+			            </f:facet>  
+			            <h:outputText value="#{livro.isbn}" />  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="" />  
+			            </f:facet>  
+			             <p:commandButton id="editarLivro" value="Editar" action="#{livroBean.editar(livro)}" update=":livro" />  
+			        </p:column> 
+			         
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="" />  
+			            </f:facet>
+			            <p:commandButton id="excluirLivro" value="Excluir" action="#{livroBean.excluir(livro)}" update=":listaLivros" />  
+			        </p:column>  
+			    </p:dataTable> 
+        	</h:form>
         </p:panel>
     </ui:define>
 </ui:composition>

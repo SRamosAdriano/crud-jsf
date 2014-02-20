@@ -13,16 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "livro", uniqueConstraints = {
-		@UniqueConstraint(name = "UC_LIVRO_ISBN", columnNames = "isbn"),
-		@UniqueConstraint(name = "UC_LIVRO_NOME", columnNames = "nome") })
+@Table(name = "livro")
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 5850995947244204020L;
@@ -47,7 +43,6 @@ public class Livro implements Serializable {
 	@Column(name = "ativo")
 	private Boolean ativo;
 	
-	@Null
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="livro_autor"
 			, joinColumns=@JoinColumn(name="id_livro")

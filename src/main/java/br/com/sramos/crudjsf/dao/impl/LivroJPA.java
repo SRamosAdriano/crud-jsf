@@ -44,7 +44,7 @@ public class LivroJPA implements LivroDAO {
 
 	@Override
 	public List<Livro> buscarTodos() {
-		String jpql = "select l from Livro l order by nome";
+		String jpql = "select l from Livro l where l.ativo = true order by nome";
 		TypedQuery<Livro> query = entityManager.createQuery(jpql, Livro.class);
 		List<Livro> livros = query.getResultList();
 		return livros;
