@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<ui:composition>
+		<p:menubar autoDisplay="false">
+	
+			<p:menuitem value="Início" url="/index.jsf" icon="ui-icon-contact" />
+	
+			<p:submenu label="Livro" icon="ui-icon-document">
+				<p:submenu label="Novo" icon="ui-icon-contact">
+					<p:menuitem value="Livro" url="/livro/cadastro.jsf"
+						icon="ui-icon-disk" />
+				</p:submenu>
+			</p:submenu>
+	
+			<p:submenu label="Autor" icon="ui-icon-document">
+				<p:submenu label="Novo" icon="ui-icon-contact">
+					<p:menuitem value="Autor" url="/autor/cadastro.jsf"
+						icon="ui-icon-disk" />
+				</p:submenu>
+			</p:submenu>
+	
+		</p:menubar>
+	</ui:composition>
+</html>
