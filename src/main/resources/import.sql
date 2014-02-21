@@ -48,7 +48,7 @@ insert into autor (id_autor, data_nascimento, email, nome) values (7, '1986-08-2
 insert into livro_autor (id_livro, id_autor) values (7, 7)
 
 
-insert into livro (id_livro, ativo, isbn, nome) values (8, 1, '9999040895800', 'Programação de Software em Java')
+insert into livro (id_livro, ativo, isbn, nome) values (8, 1, '9999040895800', 'Programacao de Software em Java')
 
 insert into autor (id_autor, data_nascimento, email, nome) values (8, '1987-09-01', 'sramos.adriano@gmail.com', 'Mattos, Erico Tavares de')
 
@@ -72,6 +72,6 @@ insert into livro (id_livro, ativo, isbn, nome) values (11, 1, '9788533613386', 
 insert into livro_autor (id_livro, id_autor) values (11, 9)
 
 
-insert into livro (id_livro, ativo, isbn, nome) values (12, 1, '9788533615571', 'O Senhor dos Aneis 3 - Ilustração da Capa Tolkien')
+insert into livro (id_livro, ativo, isbn, nome) values (12, 1, '9788533615571', 'O Senhor dos Aneis 3 - Ilustracao da Capa Tolkien')
 
 insert into livro_autor (id_livro, id_autor) values (12, 9)
