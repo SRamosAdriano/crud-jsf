@@ -31,7 +31,7 @@ public class Autor implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Size(min = 1, max = 25)
+	@Size(min = 1, max = 1000)
 	@Pattern(regexp = "[^0-9]*", message = "Nome não deve conter numeros")
 	@Column(name = "nome")
 	private String nome;
