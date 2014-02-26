@@ -43,3 +43,12 @@ img {
 	background-color:#FFFFFF;
 	width: 1000px;
 }
+
+.ui-picklist .ui-picklist-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow:auto;
+    height:200px;
+    width:250px;
+}

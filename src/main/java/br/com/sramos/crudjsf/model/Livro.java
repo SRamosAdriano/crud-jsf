@@ -47,6 +47,7 @@ public class Livro implements Serializable {
 	@JoinTable(name="livro_autor"
 			, joinColumns=@JoinColumn(name="id_livro")
 			, inverseJoinColumns=@JoinColumn(name="id_autor"))
+	private
 	Collection<Autor> autores;
 
 	public Livro() {
@@ -84,12 +85,21 @@ public class Livro implements Serializable {
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+	
+	public Collection<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(Collection<Autor> autores) {
+		this.autores = autores;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ativo == null) ? 0 : ativo.hashCode());
+		result = prime * result + ((autores == null) ? 0 : autores.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -109,6 +119,11 @@ public class Livro implements Serializable {
 			if (other.ativo != null)
 				return false;
 		} else if (!ativo.equals(other.ativo))
+			return false;
+		if (autores == null) {
+			if (other.autores != null)
+				return false;
+		} else if (!autores.equals(other.autores))
 			return false;
 		if (id == null) {
 			if (other.id != null)

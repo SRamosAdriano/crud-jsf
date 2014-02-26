@@ -12,7 +12,7 @@
 				Crud-Jsf
 			</ui:insert>
 		</title>
-		<h:outputStylesheet library="css" name="crudjsf.css"/>
+		 <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/crudjsf.css?ln=css" />
 		<style type="text/css"><!--
 			#topo {
 				text-align: center;
@@ -35,7 +35,10 @@
 	    	</div>
 	    	<br/>
 	    	<div id="corpo">
-	    		<p:messages id="mensagens" showDetail="true" autoUpdate="true" closable="true" />  
+	    		<h:form id="alertaMensagens">
+		    		<p:messages id="mensagens" showDetail="true" autoUpdate="true" escape="false" closable="true"/>
+		    		<p:growl id="msg" showDetail="true" autoUpdate="true" escape="false" />
+	    		</h:form>  
 	    		<ui:insert name="corpo"/>
 	    	</div>
 	    	<br/>

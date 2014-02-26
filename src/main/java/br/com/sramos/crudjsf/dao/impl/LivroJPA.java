@@ -14,10 +14,10 @@ import br.com.sramos.crudjsf.model.Livro;
 @Named("livroDAO")
 public class LivroJPA implements LivroDAO {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-	
 	private static final long serialVersionUID = -6688555651331649556L;
+	
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	public void salvar(Livro livro) {

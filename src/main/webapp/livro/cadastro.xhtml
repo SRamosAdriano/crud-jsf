@@ -10,16 +10,31 @@
     	<p:panel style="width:100%; text-align:center">
    		
             <h:form id="livro">
-            	<h:panelGrid columns="2">
+            	<h:panelGrid columns="4">
 	            	<h:outputText value="Nome Livro: " />
 	            	<h:inputText id="nomeLivro" value="#{livroBean.livro.nome}" />
 	            	
 	            	<h:outputText value="ISBN Livro: " />
 	            	<h:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" />
-	            	
-	            	<p:commandButton id="salvarLivro" value="Salvar" action="#{livroBean.salvar()}" update=":livro :listaLivros" />
 	            </h:panelGrid>
-            </h:form>
+				
+				<h:panelGrid>
+					<p:pickList id="autores" value="#{livroBean.autores}" var="autor" effect="bounce" itemValue="#{autor}" itemLabel="#{autor.nome}" converter="autor"
+						showSourceControls="true" showTargetControls="true" showCheckbox="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+	
+						<f:facet name="sourceCaption">Autores Disponíveis</f:facet>
+						<f:facet name="targetCaption">Autores Associados</f:facet>
+	
+						<p:ajax event="transfer" listener="#{livroBean.autoresTransferidos}" />
+	
+						<p:column style="width:100%;">
+							<h:outputText value="#{autor.nome}" />
+			        	</p:column>
+					</p:pickList>
+					
+					<p:commandButton id="salvarLivro" value="Salvar" action="#{livroBean.salvar()}" update=":livro :listaLivros" style="float:left"/>
+				</h:panelGrid>
+			</h:form>
             
             <br/>
         	<h:form id="listaLivros">
