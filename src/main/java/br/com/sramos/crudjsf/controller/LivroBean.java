@@ -38,14 +38,12 @@ public class LivroBean extends AbstractController implements Serializable{
 	public void salvar(){
 		try {
 			
-			List<Autor> autoresAssociados = autores.getTarget();
-			if(autoresAssociados.size() > 0){
-				livro.setAutores(autoresAssociados);
-			}
+			List<Autor> autoresAssociados = this.autores.getTarget();
+			this.livro.setAutores(autoresAssociados);
 			
-			livroBO.salvar(livro);
+			this.livroBO.salvar(this.livro);
 			mensagemInformacao("Livro", "Livro salvo com sucesso.");
-			livro = new Livro();
+			this.livro = new Livro();
 			this.livros = null;
 			this.autores = null;
 		} catch (Exception e) {
@@ -57,10 +55,20 @@ public class LivroBean extends AbstractController implements Serializable{
 		try {
 			this.livro = livro;
 			
-			List<Autor> autoresDisponiveis = new ArrayList<Autor>();  
-	        List<Autor> autoresAssociados = new ArrayList<Autor>(); 
+			List<Autor> autoresDisponiveis = this.autorBO.buscarTodos();  
+	        List<Autor> autoresAssociados = this.autorBO.buscarPorIdLivro(this.livro.getId()); 
 			
-			autores = new DualListModel<Autor>(autoresDisponiveis, autoresAssociados); 
+	        for (int i = 0 ; i < autoresDisponiveis.size() ; i++) {
+				for (int y = 0 ; y < autoresAssociados.size() ; y++) {
+					if(autoresAssociados.get(y).getId() == autoresDisponiveis.get(i).getId()){
+						autoresDisponiveis.remove(i);
+						i=-1;
+						break;
+					}
+				}
+			}
+	        
+	        this.autores = new DualListModel<Autor>(autoresDisponiveis, autoresAssociados); 
 		} catch (Exception e) {
 			mensagemErroFatal(e, "Erro inesperado", "Erro ao editar livro");
 		}
@@ -68,35 +76,26 @@ public class LivroBean extends AbstractController implements Serializable{
 	
 	public void excluir(Livro livro){
 		try {
-			livroBO.deletar(livro);
-			mensagemInformacao("Livro", "Livro excluido com sucesso.");
+			this.livroBO.deletar(livro);
+			
+			this.livro = new Livro();
 			this.livros = null;
+			this.autores = null;
+			mensagemInformacao("Livro", "Livro excluido com sucesso.");
 		} catch (Exception e) {
 			mensagemErroFatal(e, "Erro inesperado", "Erro ao excluir livros");
 		}
 	}
 
-	public List<Livro> getLivros() {
-		if(this.livros == null){
-			try {
-				this.livros = livroBO.buscarTodos();
-			} catch (Exception e) {
-				mensagemErroFatal(e, "Erro inesperado", "Erro ao recuperar todos os livros");
-			}
+	public void autoresTransferidos(TransferEvent event) {
+		StringBuilder nomesAutores = new StringBuilder();
+		for (Object item : event.getItems()) {
+			Autor autor = (Autor) item;
+			nomesAutores.append(autor.getNome());
+			nomesAutores.append("<br />");
 		}
-		return livros;
+		mensagemInformacao("Itens transferidos", nomesAutores.toString());
 	}
-	
-	
-	 public void autoresTransferidos(TransferEvent event) {  
-	        StringBuilder nomesAutores = new StringBuilder();  
-	        for(Object item : event.getItems()) {
-	        	Autor autor = (Autor) item;
-	            nomesAutores.append(autor.getNome());
-	            nomesAutores.append("<br />");  
-	        }  
-	        mensagemInformacao("Itens transferidos", nomesAutores.toString());
-	    }
 	
 	public Livro getLivro() {
 		return livro;
@@ -105,12 +104,19 @@ public class LivroBean extends AbstractController implements Serializable{
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
+	
+	public List<Livro> getLivros() {
+		if(this.livros == null){
+			this.livros = this.livroBO.buscarTodos();
+		}
+		return livros;
+	}
 
 	public DualListModel<Autor> getAutores() {
 		if(autores == null){
-			List<Autor> autoresDisponiveis = autorBO.buscarTodos(); 
+			List<Autor> autoresDisponiveis = this.autorBO.buscarTodos(); 
 	        List<Autor> autoresAssociados = new ArrayList<Autor>(); 
-			autores = new DualListModel<Autor>(autoresDisponiveis, autoresAssociados);
+	        this.autores = new DualListModel<Autor>(autoresDisponiveis, autoresAssociados);
 		}
 		return autores;
 	}

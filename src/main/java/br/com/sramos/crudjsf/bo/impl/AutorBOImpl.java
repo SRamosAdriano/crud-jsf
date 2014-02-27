@@ -34,4 +34,10 @@ public class AutorBOImpl implements AutorBO{
 		return autores;
 	}
 
+	@Override
+	public List<Autor> buscarPorIdLivro(Long idLivro) {
+		List<Autor> autores = autorDAO.buscarPorIdLivro(idLivro);
+		return autores;
+	}
+
 }

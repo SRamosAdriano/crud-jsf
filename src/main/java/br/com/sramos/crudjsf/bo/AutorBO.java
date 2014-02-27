@@ -12,5 +12,7 @@ public interface AutorBO extends Serializable{
 	public Autor buscarPorId(Long id);
 	
 	public List<Autor> buscarTodos();
+	
+	public List<Autor> buscarPorIdLivro(Long idLivro);
 
 }

@@ -10,7 +10,6 @@ import javax.persistence.TypedQuery;
 
 import br.com.sramos.crudjsf.dao.AutorDAO;
 import br.com.sramos.crudjsf.model.Autor;
-import br.com.sramos.crudjsf.model.Livro;
 
 @Named("autorDAO")
 public class AutorJPA implements AutorDAO {
@@ -33,7 +32,7 @@ public class AutorJPA implements AutorDAO {
 	@Override
 	public Autor buscarPorId(Long id) {
 		String jpql = "select a from Autor a where id = :id";
-		Query query = entityManager.createQuery(jpql, Livro.class);
+		Query query = entityManager.createQuery(jpql, Autor.class);
 		query.setParameter("id", id);
 		Autor autor = (Autor) query.getSingleResult();
 		return autor;
@@ -43,6 +42,15 @@ public class AutorJPA implements AutorDAO {
 	public List<Autor> buscarTodos() {
 		String jpql = "select a from Autor a order by a.nome";
 		TypedQuery<Autor> query = entityManager.createQuery(jpql, Autor.class);
+		List<Autor> autores = query.getResultList();
+		return autores;
+	}
+
+	@Override
+	public List<Autor> buscarPorIdLivro(Long idLivro) {
+		String jpql = "select a from Autor a join fetch a.livros l where l.id = :idLivro order by a.nome";
+		TypedQuery<Autor> query = entityManager.createQuery(jpql, Autor.class);
+		query.setParameter("idLivro", idLivro);
 		List<Autor> autores = query.getResultList();
 		return autores;
 	}

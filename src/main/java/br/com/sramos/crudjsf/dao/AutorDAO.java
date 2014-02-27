@@ -13,4 +13,6 @@ public interface AutorDAO extends Serializable{
 	
 	public List<Autor> buscarTodos();
 	
+	public List<Autor> buscarPorIdLivro(Long idLivro);
+	
 }

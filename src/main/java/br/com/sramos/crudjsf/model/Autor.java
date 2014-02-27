@@ -46,6 +46,7 @@ public class Autor implements Serializable {
 	private String email;
 	
 	@ManyToMany (mappedBy ="autores", fetch=FetchType.LAZY)
+	private
 	Collection<Livro> livros;
 
 	public Autor(){}
@@ -82,6 +83,14 @@ public class Autor implements Serializable {
 		this.email = email;
 	}
 
+	public Collection<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(Collection<Livro> livros) {
+		this.livros = livros;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,6 +99,7 @@ public class Autor implements Serializable {
 				+ ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((livros == null) ? 0 : livros.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -117,6 +127,11 @@ public class Autor implements Serializable {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (livros == null) {
+			if (other.livros != null)
+				return false;
+		} else if (!livros.equals(other.livros))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)

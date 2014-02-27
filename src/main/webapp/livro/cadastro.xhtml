@@ -10,12 +10,14 @@
     	<p:panel style="width:100%; text-align:center">
    		
             <h:form id="livro">
-            	<h:panelGrid columns="4">
+            	<h:panelGrid id="infoLivro" columns="5">
 	            	<h:outputText value="Nome Livro: " />
-	            	<h:inputText id="nomeLivro" value="#{livroBean.livro.nome}" />
+	            	<h:inputText id="nomeLivro" value="#{livroBean.livro.nome}" style="width: 300px" validatorMessage="Livro: Valor inválido!"/>
 	            	
 	            	<h:outputText value="ISBN Livro: " />
-	            	<h:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" />
+	            	<h:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" style="width: 150px" validatorMessage="ISBN: Valor inválido!"/>
+	            	
+	            	<p:focus context="infoLivro"/>
 	            </h:panelGrid>
 				
 				<h:panelGrid>
@@ -69,7 +71,7 @@
 			            <f:facet name="header">  
 			                <h:outputText value="" />  
 			            </f:facet>
-			            <p:commandButton id="excluirLivro" value="Excluir" action="#{livroBean.excluir(livro)}" update=":listaLivros" />  
+			            <p:commandButton id="excluirLivro" value="Excluir" action="#{livroBean.excluir(livro)}" update=":livro :listaLivros" />  
 			        </p:column>  
 			    </p:dataTable> 
         	</h:form>
