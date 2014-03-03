@@ -21,7 +21,71 @@
 	            	
 	            	<p:focus context="infoLivro"/>
 	            </h:panelGrid>
+	            
+	            <h:panelGrid>
+					<p:pickList id="livros" value="#{autorBean.livros}" var="livro" effect="bounce" itemValue="#{livro}" itemLabel="#{livro.nome}" converter="livro"
+						showSourceControls="true" showTargetControls="true" showCheckbox="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+
+						<f:facet name="sourceCaption">Livros Disponíveis</f:facet>
+						<f:facet name="targetCaption">Livros Associados</f:facet>
+
+						<p:ajax event="transfer" listener="#{autorBean.livrosTransferidos}" />
+
+						<p:column style="width:100%;">
+							<h:outputText value="#{livro.nome}" />
+			        	</p:column>
+					</p:pickList>
+
+					<p:commandButton id="salvarLivro" value="Salvar" action="#{autorBean.salvar()}" update=":autor :listaAutores" style="float:left"/>
+				</h:panelGrid>
    			</h:form>
+
+   			<br/>
+        	<h:form id="listaAutores">
+        		<p:dataTable id="listaDeAutores" var="autor" value="#{autorBean.autores}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Autores Não Localizados" 
+        				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">  
+			        <f:facet name="header">  
+			            <h:outputText value="Lista de Autores" />  
+			        </f:facet>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="Nome" />  
+			            </f:facet>  
+			            <h:outputText value="#{autor.nome}" />  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="Email" />  
+			            </f:facet>  
+			            <h:outputText value="#{autor.email}" />  
+			        </p:column>
+			          
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="Data Nascimento" />  
+			            </f:facet>  
+			            <h:outputText value="#{autor.dataNascimento}">
+			            	<f:convertDateTime pattern="dd/MM/yyyy" locale="pt,BR" timeZone="Brazil/East"/>
+			            </h:outputText>  
+			        </p:column>  
+			  
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="" />  
+			            </f:facet>  
+			             <p:commandButton id="editarAutor" value="Editar" action="#{livroBean.editar(livro)}" update=":autor" />  
+			        </p:column> 
+			         
+			        <p:column>  
+			            <f:facet name="header">  
+			                <h:outputText value="" />  
+			            </f:facet>
+			            <p:commandButton id="excluirAutor" value="Excluir" action="#{livroBean.excluir(livro)}" update=":autor :listaAutores" />  
+			        </p:column>  
+			    </p:dataTable> 
+        	</h:form>
         </p:panel>
     </ui:define>
 </ui:composition>

@@ -47,8 +47,7 @@ public class Livro implements Serializable {
 	@JoinTable(name="livro_autor"
 			, joinColumns=@JoinColumn(name="id_livro")
 			, inverseJoinColumns=@JoinColumn(name="id_autor"))
-	private
-	Collection<Autor> autores;
+	private Collection<Autor> autores;
 
 	public Livro() {
 		this.ativo = true;

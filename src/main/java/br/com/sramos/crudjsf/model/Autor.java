@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -39,6 +41,7 @@ public class Autor implements Serializable {
 	
 	@NotNull (message="Data nascimento não pode ser nulo")
 	@Column(name = "data_nascimento")
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 
 	@NotNull(message="Email não pode ser nulo")
@@ -46,9 +49,8 @@ public class Autor implements Serializable {
 	@Email(message="Email inválido")
 	private String email;
 	
-	@ManyToMany (mappedBy ="autores", fetch=FetchType.LAZY)
-	private
-	Collection<Livro> livros;
+	@ManyToMany(mappedBy ="autores", fetch=FetchType.LAZY)
+	private Collection<Livro> livros;
 
 	public Autor(){}
 	
