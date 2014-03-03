@@ -30,19 +30,20 @@ public class Autor implements Serializable {
 	@Column(name = "id_autor")
 	private Long id;
 
-	@NotNull
-	@Size(min = 1, max = 1000)
+	@NotNull(message="Nome não pode ser nulo")
+	@NotEmpty(message="Nome não pode ser vazio")
+	@Size(min = 1, max = 1000, message = "Nome deve conter entre 1 a 1000 caracteres")
 	@Pattern(regexp = "[^0-9]*", message = "Nome não deve conter numeros")
 	@Column(name = "nome")
 	private String nome;
 	
-	@NotNull
+	@NotNull (message="Data nascimento não pode ser nulo")
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 
-	@NotNull
-	@NotEmpty
-	@Email
+	@NotNull(message="Email não pode ser nulo")
+	@NotEmpty(message="Email não pode ser vazio")
+	@Email(message="Email inválido")
 	private String email;
 	
 	@ManyToMany (mappedBy ="autores", fetch=FetchType.LAZY)

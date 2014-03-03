@@ -8,9 +8,20 @@
     template="/WEB-INF/templates/default.xhtml">
     <ui:define name="corpo">
     	<p:panel style="width:100%; text-align:center">
-   		
-            Implementar
-            
+   			<h:form id="autor">
+   				<h:panelGrid id="infoLivro" columns="7">
+	            	<p:outputLabel value="Nome Autor " />
+	            	<p:inputText id="nomeAutor" value="#{autorBean.autor.nome}" style="width: 300px"/>
+	            	
+	            	<p:outputLabel value="Email: " />
+	            	<p:inputText id="emailAutor" value="#{autorBean.autor.email}" style="width: 150px" />
+	            	
+	            	<p:outputLabel value="Data Nascimento: " />
+	            	<p:calendar id="dataNascimentoAutor" locale="pt_BR" pattern="dd/MM/yyyy" value="#{autorBean.autor.dataNascimento}" />
+	            	
+	            	<p:focus context="infoLivro"/>
+	            </h:panelGrid>
+   			</h:form>
         </p:panel>
     </ui:define>
 </ui:composition>

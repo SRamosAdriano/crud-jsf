@@ -11,11 +11,11 @@
    		
             <h:form id="livro">
             	<h:panelGrid id="infoLivro" columns="5">
-	            	<h:outputText value="Nome Livro: " />
-	            	<h:inputText id="nomeLivro" value="#{livroBean.livro.nome}" style="width: 300px" validatorMessage="Livro: Valor inválido!"/>
+            		<p:outputLabel value="Nome Livro: " />
+	            	<p:inputText id="nomeLivro" value="#{livroBean.livro.nome}" style="width: 300px" validatorMessage="Livro: Valor inválido!"/>
 	            	
-	            	<h:outputText value="ISBN Livro: " />
-	            	<h:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" style="width: 150px" validatorMessage="ISBN: Valor inválido!"/>
+	            	<p:outputLabel value="ISBN Livro: " />
+	            	<p:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" style="width: 150px" validatorMessage="ISBN: Valor inválido!"/>
 	            	
 	            	<p:focus context="infoLivro"/>
 	            </h:panelGrid>
