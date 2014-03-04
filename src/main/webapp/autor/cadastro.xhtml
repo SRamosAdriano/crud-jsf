@@ -9,7 +9,7 @@
     <ui:define name="corpo">
     	<p:panel style="width:100%; text-align:center">
    			<h:form id="autor">
-   				<h:panelGrid id="infoLivro" columns="7">
+   				<h:panelGrid id="infoLivro" columns="6">
 	            	<p:outputLabel value="Nome Autor " />
 	            	<p:inputText id="nomeAutor" value="#{autorBean.autor.nome}" style="width: 300px"/>
 	            	
@@ -19,25 +19,11 @@
 	            	<p:outputLabel value="Data Nascimento: " />
 	            	<p:calendar id="dataNascimentoAutor" locale="pt_BR" pattern="dd/MM/yyyy" value="#{autorBean.autor.dataNascimento}" />
 	            	
+		           	<p:commandButton id="salvarLivro" value="Salvar" action="#{autorBean.salvar()}" update=":autor :listaAutores" style="float:left"/>
+		           	
 	            	<p:focus context="infoLivro"/>
 	            </h:panelGrid>
 	            
-	            <h:panelGrid>
-					<p:pickList id="livros" value="#{autorBean.livros}" var="livro" effect="bounce" itemValue="#{livro}" itemLabel="#{livro.nome}" converter="livro"
-						showSourceControls="true" showTargetControls="true" showCheckbox="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
-
-						<f:facet name="sourceCaption">Livros Disponíveis</f:facet>
-						<f:facet name="targetCaption">Livros Associados</f:facet>
-
-						<p:ajax event="transfer" listener="#{autorBean.livrosTransferidos}" />
-
-						<p:column style="width:100%;">
-							<h:outputText value="#{livro.nome}" />
-			        	</p:column>
-					</p:pickList>
-
-					<p:commandButton id="salvarLivro" value="Salvar" action="#{autorBean.salvar()}" update=":autor :listaAutores" style="float:left"/>
-				</h:panelGrid>
    			</h:form>
 
    			<br/>
@@ -75,14 +61,16 @@
 			            <f:facet name="header">  
 			                <h:outputText value="" />  
 			            </f:facet>  
-			             <p:commandButton id="editarAutor" value="Editar" action="#{livroBean.editar(livro)}" update=":autor" />  
+			             <p:commandButton id="editarAutor" value="Editar" update=":autor">
+			             	<f:setPropertyActionListener target="#{autorBean.autor}" value="#{autor}" />
+			             </p:commandButton>  
 			        </p:column> 
 			         
 			        <p:column>  
 			            <f:facet name="header">  
 			                <h:outputText value="" />  
 			            </f:facet>
-			            <p:commandButton id="excluirAutor" value="Excluir" action="#{livroBean.excluir(livro)}" update=":autor :listaAutores" />  
+			            <p:commandButton id="excluirAutor" value="Excluir" action="#{autorBean.excluir(autor)}" update=":autor :listaAutores" />  
 			        </p:column>  
 			    </p:dataTable> 
         	</h:form>

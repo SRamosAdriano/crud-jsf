@@ -28,13 +28,13 @@ public class Livro implements Serializable {
 	@Column(name = "id_livro")
 	private Long id;
 
-	@NotNull
-	@Size(min = 1, max = 1000)
+	@NotNull(message="Nome não pode ser nulo")
+	@Size(min = 1, max = 1000, message="Nome deve conter entre 1 a 1000 caracteres")
 	@Column(name = "nome")
 	private String nome;
 
-	@NotNull
-	@Size(min = 1, max = 50)
+	@NotNull(message="ISBN não pode ser nulo")
+	@Size(min = 1, max = 50, message="ISBN deve conter entre 1 a 50 caracteres")
 	@Pattern(regexp = "[0-9]+", message = "ISBN não deve conter letras")
 	@Column(name = "isbn")
 	private String isbn;

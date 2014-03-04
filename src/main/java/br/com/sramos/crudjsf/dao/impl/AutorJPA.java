@@ -54,4 +54,9 @@ public class AutorJPA implements AutorDAO {
 		List<Autor> autores = query.getResultList();
 		return autores;
 	}
+
+	@Override
+	public void excluir(Autor autor) {
+		entityManager.remove(entityManager.getReference(Autor.class, autor.getId()));
+	}
 }

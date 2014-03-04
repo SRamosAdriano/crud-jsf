@@ -12,10 +12,10 @@
             <h:form id="livro">
             	<h:panelGrid id="infoLivro" columns="5">
             		<p:outputLabel value="Nome Livro: " />
-	            	<p:inputText id="nomeLivro" value="#{livroBean.livro.nome}" style="width: 300px" validatorMessage="Livro: Valor inválido!"/>
+	            	<p:inputText id="nomeLivro" value="#{livroBean.livro.nome}" style="width: 300px"/>
 	            	
 	            	<p:outputLabel value="ISBN Livro: " />
-	            	<p:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" style="width: 150px" validatorMessage="ISBN: Valor inválido!"/>
+	            	<p:inputText id="isbnLivro" value="#{livroBean.livro.isbn}" style="width: 150px"/>
 	            	
 	            	<p:focus context="infoLivro"/>
 	            </h:panelGrid>

@@ -9,6 +9,8 @@ public interface AutorDAO extends Serializable{
 
 	public void salvar(Autor autor);
 	
+	public void excluir(Autor autor);
+	
 	public Autor buscarPorId(Long id);
 	
 	public List<Autor> buscarTodos();

@@ -40,4 +40,9 @@ public class AutorBOImpl implements AutorBO{
 		return autores;
 	}
 
+	@Override
+	public void excluir(Autor autor) {
+		autorDAO.excluir(autor);
+	}
+
 }

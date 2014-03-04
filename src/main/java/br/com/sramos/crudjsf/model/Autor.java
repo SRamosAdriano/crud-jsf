@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Autor implements Serializable {
 
 	@NotNull(message="Nome não pode ser nulo")
 	@NotEmpty(message="Nome não pode ser vazio")
-	@Size(min = 1, max = 1000, message = "Nome deve conter entre 1 a 1000 caracteres")
+	@Size(min = 1, max = 1000, message="Nome deve conter entre 1 a 1000 caracteres")
 	@Pattern(regexp = "[^0-9]*", message = "Nome não deve conter numeros")
 	@Column(name = "nome")
 	private String nome;
@@ -49,7 +50,7 @@ public class Autor implements Serializable {
 	@Email(message="Email inválido")
 	private String email;
 	
-	@ManyToMany(mappedBy ="autores", fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy ="autores", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private Collection<Livro> livros;
 
 	public Autor(){}
