@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.sramos.crudjsf.bo.LivroBO;
 import br.com.sramos.crudjsf.dao.LivroDAO;
+import br.com.sramos.crudjsf.exception.BusinessException;
 import br.com.sramos.crudjsf.model.Livro;
 
 @Stateless(name="livroBO")
@@ -18,27 +19,41 @@ public class LivroBOImpl implements LivroBO{
 	LivroDAO livroDAO;
 	
 	@Override
-	public void salvar(Livro livro) {
-		livroDAO.salvar(livro);
+	public void salvar(Livro livro) throws BusinessException{
+		try {
+			livroDAO.salvar(livro);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
 	}
 
 	@Override
-	public void deletar(Livro livro) {
-		livro.setAtivo(false);
-		livroDAO.deletar(livro);
-		
+	public void deletar(Livro livro) throws BusinessException{
+		try {
+			livro.setAtivo(false);
+			livroDAO.deletar(livro);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
 	}
 
 	@Override
-	public Livro buscarPorId(Long id) {
-		Livro livro = livroDAO.buscarPorId(id);
-		return livro;
+	public Livro buscarPorId(Long id) throws BusinessException{
+		try {
+			Livro livro = livroDAO.buscarPorId(id);
+			return livro;
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
 	}
 
 	@Override
-	public List<Livro> buscarTodos() {
-		List<Livro> livros = livroDAO.buscarTodos();
-		return livros;
+	public List<Livro> buscarTodos() throws BusinessException{
+		try {
+			List<Livro> livros = livroDAO.buscarTodos();
+			return livros;
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
 	}
-
 }
